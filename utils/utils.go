@@ -2,6 +2,7 @@ package utils
 
 import (
 	"fmt"
+	"math"
 	"strconv"
 	"time"
 )
@@ -34,6 +35,14 @@ func ParseTimeToInt(time string) int {
 	if buff != "" {
 		res = res + i*60*60
 	}
+	return res
+}
+
+func ParseIntToTime(time int) string {
+	var res = ""
+	res = res + strconv.Itoa(int(math.Floor(float64(time)/(60.0*60)))) + "h"
+	res = res + strconv.Itoa(int(math.Floor(float64(time%(60.0*60))/60.0))) + "m"
+	res = res + strconv.Itoa(int(math.Floor(float64(time%60)))) + "s"
 	return res
 }
 
